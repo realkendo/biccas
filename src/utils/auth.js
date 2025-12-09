@@ -1,10 +1,10 @@
 import axios from "axios";
 import api from "./api";
 
-const AUTH_BASE = "https://fakeapi.platzi.com/en/rest/auth-jwt";
+const AUTH_BASE = "/api/proxy/auth";
 
 export const login = async (email, password) => {
-  const res = await axios.post(`${AUTH_BASE}/`, { email, password });
+  const res = await axios.post(`${AUTH_BASE}/login`, { email, password });
 
   // Response includes access_token and refresh_token
   const access = res.data?.access_token || res.data?.accessToken;
@@ -48,16 +48,10 @@ export const login = async (email, password) => {
 
 export const getProfile = async () => {
   // Use our api instance so Authorization header is applied
-  // Try common profile endpoint patterns
   try {
-    return await api.get(`${AUTH_BASE}/`);
+    return await api.get("/auth/profile");
   } catch (err) {
-    // If base endpoint fails, try /me or /profile
-    try {
-      return await api.get(`${AUTH_BASE}/me`);
-    } catch (err2) {
-      return await api.get(`${AUTH_BASE}/profile`);
-    }
+    throw err;
   }
 };
 

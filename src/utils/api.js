@@ -5,12 +5,12 @@ import { toast } from "react-hot-toast";
 const api = axios.create({
   baseURL:
     process.env.NEXT_PUBLIC_API_URL ||
-    "https://fakeapi.platzi.com/en/rest/auth-jwt",
+    "/api/proxy",
   timeout: 30000,
 });
 
 // Helpers for refresh handling
-const AUTH_REFRESH_URL = "https://fakeapi.platzi.com/en/rest/auth-jwt/";
+const AUTH_REFRESH_URL = "/api/proxy/auth/refresh-token";
 let isRefreshing = false;
 let failedQueue = [];
 
@@ -86,7 +86,7 @@ api.interceptors.response.use(
       try {
         // Refresh token request - most APIs use refresh_token field
         const refreshRes = await axios.post(AUTH_REFRESH_URL, {
-          refresh_token: refreshToken,
+          refreshToken: refreshToken,
         });
 
         const newAccess =
