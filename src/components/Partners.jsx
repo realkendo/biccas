@@ -1,5 +1,13 @@
+import Image from "next/image";
+
 export default function Partners() {
-  const partners = ["Unsplash", "Notion", "INTERCOM", "descript", "grammarly"];
+  const partners = [
+    { name: "Unsplash", logo: "/assets/unsplash.svg" },
+    { name: "Notion", logo: "/assets/notion.svg" },
+    { name: "INTERCOM", logo: "/assets/intercom.svg" },
+    { name: "descript", logo: "/assets/descript.svg" },
+    { name: "grammarly", logo: "/assets/grammarly.svg" },
+  ];
 
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -13,9 +21,15 @@ export default function Partners() {
           {partners.map((partner, index) => (
             <div
               key={index}
-              className="text-gray-400 text-sm sm:text-base lg:text-lg font-medium grayscale hover:grayscale-0 transition-all"
+              className="grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
             >
-              {partner}
+              <Image
+                src={partner.logo}
+                alt={partner.name}
+                width={120}
+                height={40}
+                className="h-8 sm:h-10 w-auto object-contain"
+              />
             </div>
           ))}
         </div>

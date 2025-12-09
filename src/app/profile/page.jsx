@@ -15,37 +15,33 @@ export default function ProfilePage() {
     const load = async () => {
       setLoading(true);
       try {
-        // Always fetch fresh profile data from API
+        // Check for cached user data first
+        const stored = typeof window !== "undefined" ? localStorage.getItem("user") : null;
+        if (stored) {
+          const userData = JSON.parse(stored);
+          setUser(userData);
+          setLoading(false);
+          // Optional: You could still fetch in background to update cache, 
+          // but user requested to avoid the API call if data exists.
+          return;
+        }
+
+        // Only fetch if no cache
         const res = await getProfile();
         if (res?.data) {
           setUser(res.data);
           localStorage.setItem("user", JSON.stringify(res.data));
-          // Notify other components
           if (typeof window !== "undefined") {
             window.dispatchEvent(
               new CustomEvent("authChanged", { detail: { user: res.data } })
             );
           }
-        } else {
-          // Fallback to localStorage if API doesn't return data
-          const stored =
-            typeof window !== "undefined" ? localStorage.getItem("user") : null;
-          if (stored) {
-            setUser(JSON.parse(stored));
-          }
         }
       } catch (err) {
-        // Try localStorage as fallback
-        const stored =
-          typeof window !== "undefined" ? localStorage.getItem("user") : null;
-        if (stored) {
-          setUser(JSON.parse(stored));
-        } else {
-          toast.error("Could not load profile. Please log in.", {
-            position: "top-right",
-          });
-          router.push("/login");
-        }
+        toast.error("Could not load profile. Please log in.", {
+          position: "top-right",
+        });
+        router.push("/login"); // Only redirect if we really have no data and fetch failed
       } finally {
         setLoading(false);
       }
