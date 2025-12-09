@@ -55,6 +55,15 @@ body {
   }
 }
 
+@keyframes float-rotate-left {
+  0%, 100% {
+    transform: translateY(0px) rotate(-25deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(-25deg);
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -67,4 +76,9 @@ body {
 .animate-float-delay-2 {
   animation: float-delay-2 4s ease-in-out infinite;
   animation-delay: 1s;
+}
+
+.animate-float-rotate-left {
+  animation: float-rotate-left 3.5s ease-in-out infinite;
+  animation-delay: 0.5s;
 }
