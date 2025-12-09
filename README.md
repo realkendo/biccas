@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Biccas
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It uses **React 19**, **Tailwind CSS** for styling, and **Axios** for API requests.
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+*   **Node.js**: Install the latest stable version of Node.js (v18 or later recommended).
+*   **npm**: This project uses npm as the package manager.
 
 ## Getting Started
 
-First, run the development server:
+1.  **Clone the repository** (if you haven't already):
+    ```bash
+    git clone <repository-url>
+    cd biccas
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+## Running the Project
+
+To run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Login Instructions
 
-## Learn More
+To test the application without creating a new account, you can use the built-in **Demo Users** feature on the login page:
 
-To learn more about Next.js, take a look at the following resources:
+1.  Navigate to the Login page (default page or via `/login`).
+2.  Click the **"Show Demo Users"** button below the login form.
+3.  Wait for the demo users to load (fetched from the API).
+4.  Click the **"Use Credentials"** button on any user card. This will automatically fill the email and password fields.
+5.  Click **"Log In"** to access the dashboard.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Building for Production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To create an optimized production build:
 
-## Deploy on Vercel
+```bash
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+After building, you can start the production server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm start
+```
+
+## Linting
+
+To run the linter and fix basic issues:
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+*   `src/app`: Contains the application routes and pages (App Router).
+*   `src/components`: Reusable UI components.
+*   `src/utils`: Utility functions and API configurations (e.g., Axios setup).
+*   `public`: Static assets like images and fonts.
+
+## Technologies Used
+
+*   **[Next.js](https://nextjs.org/)**: The React Framework for the Web.
+*   **[React](https://react.dev/)**: The library for web and native user interfaces.
+*   **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework.
+*   **[Axios](https://axios-http.com/)**: Promise based HTTP client for the browser and node.js.
